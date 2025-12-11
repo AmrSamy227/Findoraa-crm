@@ -1,3 +1,15 @@
+function fitTextToContainer(el, minPx) {
+  if (!el) return;
+  const style = window.getComputedStyle(el);
+  let size = parseFloat(style.fontSize);   
+  const min = minPx || 10;                 
+
+  while (el.scrollWidth > el.clientWidth && size > min) {
+    size -= 1;
+    el.style.fontSize = size + "px";
+  }
+}
+
 const $ = (s) => document.querySelector(s);
 
 const EMPLOYEES_STORAGE_KEY = "employeesData";
@@ -291,3 +303,4 @@ window.addEventListener("storage", () => {
 document.addEventListener("visibilitychange", () => {
   if (!document.hidden) renderReports();
 });
+
