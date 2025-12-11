@@ -193,29 +193,22 @@ function todayMonth() {
 }
 
 function updateNotificationCounter() {
-    const notifs = JSON.parse(localStorage.getItem("notificationsData")) || [];
-    const unreadCount = notifs.filter((n) => !n.read).length;
+  const notifs = JSON.parse(localStorage.getItem("notificationsData")) || [];
+  const unread = notifs.filter((n) => !n.read).length;
+  const counters = document.querySelectorAll(".notification-counter");
 
-    const counter = document.querySelector(".notification-counter");
+  if (!counters.length) return;
 
-    if (counter) {
-        if (unreadCount > 0) {
-            counter.textContent = unreadCount;
-            counter.style.display = "inline-block";
-        } else {
-            counter.style.display = "none";
-        }
+  counters.forEach((counter) => {
+    if (unread > 0) {
+      counter.textContent = unread;
+      counter.style.display = "inline-flex"; // أو "inline-block" لو حابب
+    } else {
+      counter.style.display = "none";
     }
+  });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    renderCalendar();
-    renderUpcomingDeals();
-    updateNotificationCounter();
-});
+document.addEventListener("DOMContentLoaded", updateNotificationCounter);
+window.addEventListener("storage", updateNotificationCounter);
 
-window.addEventListener("storage", () => {
-    renderCalendar();
-    renderUpcomingDeals();
-    updateNotificationCounter();
-});
