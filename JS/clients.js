@@ -1,16 +1,20 @@
 function updateNotificationCounter() {
   const notifs = JSON.parse(localStorage.getItem("notificationsData")) || [];
-  const unreadCount = notifs.filter((n) => !n.read).length;
-  const counter = document.querySelector(".notification-counter");
-  if (counter) {
-    if (unreadCount > 0) {
-      counter.textContent = unreadCount;
-      counter.style.display = "inline-block";
+  const unread = notifs.filter((n) => !n.read).length;
+  const counters = document.querySelectorAll(".notification-counter");
+
+  if (!counters.length) return;
+
+  counters.forEach((counter) => {
+    if (unread > 0) {
+      counter.textContent = unread;
+      counter.style.display = "inline-flex"; // أو "inline-block" لو حابب
     } else {
       counter.style.display = "none";
     }
-  }
+  });
 }
+
 document.addEventListener("DOMContentLoaded", updateNotificationCounter);
 window.addEventListener("storage", updateNotificationCounter);
 
@@ -463,3 +467,4 @@ document.addEventListener("DOMContentLoaded", () => {
   refreshAgentDropdowns();
   renderContacts();
 });
+
