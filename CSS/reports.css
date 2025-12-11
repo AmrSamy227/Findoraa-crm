@@ -284,15 +284,14 @@ body {
 }
 
 .kpi-card.revenue .kpi-value {
-  font-size: clamp(0.95rem, 3.4vw, 1.45rem);
-  line-height: 1.15;
-  white-space: normal;
-  overflow: visible;
-  text-overflow: unset;
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  line-height: 1.1;
+  white-space: nowrap;      
+  overflow: hidden;         
+  text-overflow: ellipsis;   
   max-width: 100%;
-  word-break: break-word;
-  overflow-wrap: anywhere;
 }
+
 
 @media (max-width: 1200px) {
   .kpi-grid {
@@ -434,3 +433,4 @@ body {
   .mobile-bell { display: none; }
   .desktop-bell { display: inline-flex; }
 }
+
