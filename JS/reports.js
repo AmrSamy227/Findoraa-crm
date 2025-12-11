@@ -1,16 +1,3 @@
-function fitTextToContainer(el, minPx) {
-  if (!el) return;
-  const style = window.getComputedStyle(el);
-  let size = parseFloat(style.fontSize) || 16;
-  const min = minPx || 12;
-
-  while (el.scrollWidth > el.clientWidth && size > min) {
-    size -= 1;
-    el.style.fontSize = size + "px";
-  }
-}
-
-
 const $ = (s) => document.querySelector(s);
 
 const EMPLOYEES_STORAGE_KEY = "employeesData";
@@ -132,20 +119,12 @@ function renderReports() {
   const metrics = calculateMetrics(projects);
 
   $("#totalProjects").textContent = metrics.totalProjects;
-$("#totalUnits").textContent = metrics.totalUnits;
-$("#unitsSold").textContent = metrics.unitsSold;
-$("#unitsAvailable").textContent = metrics.unitsAvailable;
-$("#unitsPending").textContent = metrics.unitsPending;
-
-const revEl = document.getElementById("totalRevenue");
-if (revEl) {
-  revEl.textContent = formatCurrency(metrics.totalRevenue);
-  revEl.style.fontSize = "";        // رجّع المقاس الافتراضي
-  fitTextToContainer(revEl, 12);    // صغّر لو الرقم كبير
-}
-
-
-
+  $("#totalUnits").textContent = metrics.totalUnits;
+  $("#unitsSold").textContent = metrics.unitsSold;
+  $("#unitsAvailable").textContent = metrics.unitsAvailable;
+  $("#unitsPending").textContent = metrics.unitsPending;
+  $("#totalRevenue").textContent = formatCurrency(metrics.totalRevenue);
+  $("#totalRevenue").textContent = formatCurrency(metrics.totalRevenue);
 
   const revEl = document.getElementById("totalRevenue");
   if (revEl) {
@@ -312,7 +291,3 @@ window.addEventListener("storage", () => {
 document.addEventListener("visibilitychange", () => {
   if (!document.hidden) renderReports();
 });
-
-
-
-
