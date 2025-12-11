@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Notifications - FINDORA</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="CSS/styles.css" />
+    <link rel="stylesheet" href="CSS/notifications.css" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container d-flex align-items-center">
+        <a class="navbar-brand" href="index.html">FINDORA</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navContent"
+        >
+          ☰
+        </button>
+        <div class="collapse navbar-collapse" id="navContent">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="dashbord.html" data-page="dashbord.html"
+                >Dashboard</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="hr-dashboard.html"
+                data-page="hr-dashboard.html"
+                >HR</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="calendar.html">Calendar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="reports.html">Reports</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="notifications.html"
+                >Notifications</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container py-4 py-lg-5">
+      <div class="page-head">
+        <div>
+          <h1 class="page-title">Notifications</h1>
+          <div class="small muted" id="subtitle">
+            Keep track of units, projects and deals.
+          </div>
+        </div>
+
+        <div class="head-right">
+          <div class="unread-pill"><span id="unreadCount">0</span> unread</div>
+          <button class="btn btn-outline-light btn-sm" id="markAllBtn">
+            <i class="fas fa-check-double me-2"></i>Mark all read
+          </button>
+          <button class="btn btn-outline-danger btn-sm" id="clearAllBtn">
+            <i class="fas fa-trash me-2"></i>Clear all
+          </button>
+        </div>
+      </div>
+
+      <div class="filters-bar">
+        <button class="filter-chip active" data-filter="all">
+          <i class="fas fa-layer-group me-2"></i>All
+        </button>
+        <button class="filter-chip" data-filter="project">
+          <i class="fas fa-folder me-2"></i>Projects
+        </button>
+        <button class="filter-chip" data-filter="unit">
+          <i class="fas fa-house me-2"></i>Units
+        </button>
+        <button class="filter-chip" data-filter="deal">
+          <i class="fas fa-briefcase me-2"></i>Deals
+        </button>
+        <button class="filter-chip" data-filter="agent">
+          <i class="fas fa-user-tie me-2"></i>Agents
+        </button>
+      </div>
+
+      <section id="notificationsList" class="list-wrap"></section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="JS/auth-utils.js"></script>
+    <script src="JS/notifications.js"></script>
+  </body>
+</html>
