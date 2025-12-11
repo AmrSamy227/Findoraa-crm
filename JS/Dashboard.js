@@ -1770,18 +1770,22 @@ function addNotification(type, title, text) {
 }
 
 function updateNotificationCounter() {
-  const notifications =
-    JSON.parse(localStorage.getItem("notificationsData")) || [];
-  const unreadCount = notifications.filter((n) => !n.read).length;
-  const counterElement = document.querySelector(".notification-counter");
-  if (counterElement) {
-    if (unreadCount > 0) {
-      counterElement.textContent = unreadCount;
-      counterElement.style.display = "block";
+  const notifs = JSON.parse(localStorage.getItem("notificationsData")) || [];
+  const unread = notifs.filter((n) => !n.read).length;
+  const counters = document.querySelectorAll(".notification-counter");
+
+  if (!counters.length) return;
+
+  counters.forEach((counter) => {
+    if (unread > 0) {
+      counter.textContent = unread;
+      counter.style.display = "inline-flex"; // أو "inline-block" لو حابب
     } else {
-      counterElement.style.display = "none";
+      counter.style.display = "none";
     }
-  }
+  });
 }
 
 document.addEventListener("DOMContentLoaded", updateNotificationCounter);
+window.addEventListener("storage", updateNotificationCounter);
+
