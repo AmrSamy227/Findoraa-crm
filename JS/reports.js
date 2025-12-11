@@ -256,15 +256,19 @@ function renderReports() {
 
 function updateNotificationCounter() {
   const notifs = JSON.parse(localStorage.getItem("notificationsData")) || [];
-  const unreadCount = notifs.filter((n) => !n.read).length;
-  const counter = document.querySelector(".notification-counter");
-  if (!counter) return;
-  if (unreadCount > 0) {
-    counter.textContent = unreadCount;
-    counter.style.display = "inline-block";
-  } else {
-    counter.style.display = "none";
-  }
+  const unread = notifs.filter((n) => !n.read).length;
+  const counters = document.querySelectorAll(".notification-counter");
+
+  if (!counters.length) return;
+
+  counters.forEach((counter) => {
+    if (unread > 0) {
+      counter.textContent = unread;
+      counter.style.display = "inline-flex"; // أو "inline-block" لو حابب
+    } else {
+      counter.style.display = "none";
+    }
+  });
 }
 
 function exportPDF() {
@@ -291,3 +295,4 @@ window.addEventListener("storage", () => {
 document.addEventListener("visibilitychange", () => {
   if (!document.hidden) renderReports();
 });
+
