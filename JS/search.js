@@ -281,16 +281,20 @@ function setQuickFilter(val) {
 }
 
 function updateNotificationCounter() {
-  const notifications = JSON.parse(localStorage.getItem("notificationsData")) || [];
-  const unreadCount = notifications.filter((n) => !n.read).length;
-  const counterElement = $(".notification-counter");
-  if (!counterElement) return;
-  if (unreadCount > 0) {
-    counterElement.textContent = unreadCount;
-    counterElement.style.display = "block";
-  } else {
-    counterElement.style.display = "none";
-  }
+  const notifs = JSON.parse(localStorage.getItem("notificationsData")) || [];
+  const unread = notifs.filter((n) => !n.read).length;
+  const counters = document.querySelectorAll(".notification-counter");
+
+  if (!counters.length) return;
+
+  counters.forEach((counter) => {
+    if (unread > 0) {
+      counter.textContent = unread;
+      counter.style.display = "inline-flex"; // أو "inline-block" لو حابب
+    } else {
+      counter.style.display = "none";
+    }
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -326,3 +330,4 @@ document.addEventListener("DOMContentLoaded", () => {
   filter();
 });
 window.addEventListener("storage", updateNotificationCounter);
+
