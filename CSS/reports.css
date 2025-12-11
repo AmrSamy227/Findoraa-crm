@@ -284,12 +284,13 @@ body {
 }
 
 .kpi-card.revenue .kpi-value {
-  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  font-weight: 800;
+  color: #38c172;             
+  white-space: nowrap;        
+  overflow: hidden;            
+  text-overflow: clip;      
   line-height: 1.1;
-  white-space: nowrap;      
-  overflow: hidden;         
-  text-overflow: ellipsis;   
-  max-width: 100%;
+  font-size: 1.6rem;          
 }
 
 
@@ -433,4 +434,5 @@ body {
   .mobile-bell { display: none; }
   .desktop-bell { display: inline-flex; }
 }
+
 
