@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Project Units — Findora</title>
+
+    <link rel="stylesheet" href="CSS/styles.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="CSS/project-units.css" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container nav-grid">
+        <a
+          class="nav-left mobile-bell position-relative"
+          href="notifications.html"
+          title="Notifications"
+        >
+          <i class="fas fa-bell"></i>
+          <span
+            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger notification-counter"
+            style="display: none; font-size: 0.65rem"
+            >0</span
+          >
+        </a>
+
+        <a class="navbar-brand nav-center" href="index.html">FINDORA</a>
+
+        <button
+          class="navbar-toggler nav-right"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navContent"
+        >
+          ☰
+        </button>
+        <div class="collapse navbar-collapse" id="navContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-2">
+            <li class="nav-item">
+              <a class="nav-link" href="dashbord.html" data-page="dashbord.html"
+                >Dashboard</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                href="properities.html"
+                data-page="properities.html"
+                >Properities</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="search.html" data-page="search.html"
+                >Search</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="clients.html" data-page="clients.html"
+                >Clients</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="hr-dashboard.html"
+                data-page="hr-dashboard.html"
+                >HR</a
+              >
+            </li>
+
+            <li class="nav-item ms-lg-3 desktop-bell">
+              <a
+                class="nav-link position-relative"
+                href="notifications.html"
+                title="Notifications"
+              >
+                <i class="fas fa-bell"></i>
+                <span
+                  class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger notification-counter"
+                  style="display: none; font-size: 0.65rem"
+                  >0</span
+                >
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container py-5">
+      <div id="projectHeader" class="header-card mb-4"></div>
+
+      <div class="mb-4">
+        <div class="row g-3">
+          <div class="col-lg-6">
+            <input
+              id="searchInput"
+              class="form-control search-input"
+              placeholder="Search units by name, type, price..."
+            />
+          </div>
+          <div class="col-lg-3">
+            <select id="statusFilter" class="form-select filter-select">
+              <option value="">All Status</option>
+              <option value="Available">Available</option>
+              <option value="Pending">Pending</option>
+              <option value="Sold">Sold</option>
+            </select>
+          </div>
+          <div class="col-lg-3 d-grid">
+            <button class="btn btn-primary fw-bold" id="addUnitBtnPage">
+              <i class="fas fa-plus me-2"></i>Add Unit
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="unitsArea" class="row g-4"></div>
+    </main>
+
+    <div class="modal fade" id="unitFormModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="unitFormTitle">Add Unit</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <input type="hidden" id="unitId" />
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Unit Name</label>
+                <input
+                  id="unitName"
+                  type="text"
+                  class="form-control form-control-sm"
+                  placeholder="Unit 101"
+                />
+              </div>
+
+              <div class="col-md-3">
+                <label class="form-label">Area (m²)</label>
+                <input
+                  id="unitArea"
+                  type="text"
+                  class="form-control form-control-sm"
+                  placeholder="120"
+                />
+              </div>
+
+              <div class="col-md-3">
+                <label class="form-label">Rooms</label>
+                <input
+                  id="unitRooms"
+                  type="number"
+                  min="0"
+                  class="form-control form-control-sm"
+                  placeholder="3"
+                />
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Price</label>
+                <input
+                  id="unitPrice"
+                  type="text"
+                  class="form-control form-control-sm"
+                  placeholder="$120,000"
+                />
+              </div>
+
+              <div class="col-md-3">
+                <label class="form-label">Payment</label>
+                <select id="unitPayment" class="form-select form-select-sm">
+                  <option value="Cash">Cash</option>
+                  <option value="Installments">Installments</option>
+                </select>
+              </div>
+
+              <div class="col-md-3">
+                <label class="form-label">Delivery</label>
+                <select id="unitDelivery" class="form-select form-select-sm">
+                  <option value="Immediate">Immediate</option>
+                  <option value="After period">After period</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Status</label>
+                <select id="unitStatus" class="form-select form-select-sm">
+                  <option value="Available">Available</option>
+                  <option value="Sold">Sold</option>
+                  <option value="Pending">Pending</option>
+                </select>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Unit Image</label>
+                <input
+                  id="unitImgFile"
+                  type="file"
+                  accept="image/*"
+                  class="form-control form-control-sm mb-2"
+                />
+                <input
+                  id="unitImg"
+                  type="text"
+                  class="form-control form-control-sm"
+                  placeholder="Or paste image URL"
+                />
+                <img
+                  id="unitImgPreview"
+                  src=""
+                  style="
+                    max-width: 100%;
+                    margin-top: 8px;
+                    display: none;
+                    border-radius: 8px;
+                  "
+                />
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label">Unit Type</label>
+                <select id="unitType" class="form-select form-select-sm">
+                  <option value="Apartment">Apartment</option>
+                  <option value="Villa">Villa</option>
+                  <option value="Clinic">Clinic</option>
+                  <option value="Office">Office</option>
+                  <option value="Shop">Shop</option>
+                </select>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label">Description</label>
+                <textarea
+                  id="unitDesc"
+                  class="form-control form-control-sm"
+                  rows="3"
+                  placeholder="Short description"
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="text-end mt-3">
+              <button
+                type="button"
+                class="btn btn-primary btn-sm"
+                id="saveUnitBtn"
+              >
+                Save Unit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="JS/auth-utils.js"></script>
+    <script src="JS/project-units.js"></script>
+  </body>
+</html>
