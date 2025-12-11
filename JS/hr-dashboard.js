@@ -10,14 +10,22 @@ const INITIAL_EMPLOYEES = [
   { id: 5, name: "Karim Ibrahim", role: "Agent", team: "Residential", status: "On Leave", deals: 0, revenue: 0 }
 ];
 
-const updateNotificationCounter = () => {
+function updateNotificationCounter() {
   const notifs = JSON.parse(localStorage.getItem("notificationsData")) || [];
   const unread = notifs.filter((n) => !n.read).length;
-  const counter = $(".notification-counter");
-  if (!counter) return;
-  counter.style.display = unread ? "inline-block" : "none";
-  if (unread) counter.textContent = unread;
-};
+  const counters = document.querySelectorAll(".notification-counter");
+
+  if (!counters.length) return;
+
+  counters.forEach((counter) => {
+    if (unread > 0) {
+      counter.textContent = unread;
+      counter.style.display = "inline-flex"; // أو "inline-block" لو حابب
+    } else {
+      counter.style.display = "none";
+    }
+  });
+}
 
 document.addEventListener("DOMContentLoaded", updateNotificationCounter);
 window.addEventListener("storage", updateNotificationCounter);
@@ -319,3 +327,4 @@ const addNotificationWithAgent = (type, title, text, agentName, agentId) => {
 renderEmployees();
 renderLeaderboard();
 renderTopPerformers();
+
