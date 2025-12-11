@@ -135,8 +135,13 @@ function renderReports() {
   $("#unitsSold").textContent = metrics.unitsSold;
   $("#unitsAvailable").textContent = metrics.unitsAvailable;
   $("#unitsPending").textContent = metrics.unitsPending;
-  $("#totalRevenue").textContent = formatCurrency(metrics.totalRevenue);
-  $("#totalRevenue").textContent = formatCurrency(metrics.totalRevenue);
+ const revEl = document.getElementById("totalRevenue");
+if (revEl) {
+  revEl.textContent = formatCurrency(metrics.totalRevenue);
+  revEl.style.fontSize = "";  
+  fitTextToContainer(revEl, 12); 
+}
+
 
   const revEl = document.getElementById("totalRevenue");
   if (revEl) {
@@ -303,4 +308,5 @@ window.addEventListener("storage", () => {
 document.addEventListener("visibilitychange", () => {
   if (!document.hidden) renderReports();
 });
+
 
